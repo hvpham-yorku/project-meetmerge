@@ -141,4 +141,3 @@ o	Criteria for satisfaction:
 	Get confirmation that my feedback was received
 I think we should focus on the first 6 stories for Sprint 1 since they form the core functionality. Then we can add user accounts and the additional features in Sprint 2. The nice-to-have features could be considered if we have extra time or for future development after the course.
 
-![image](https://github.com/user-attachments/assets/f40559d4-866f-46ed-b277-dce542ad2cd4)
