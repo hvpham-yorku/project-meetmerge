@@ -1,6 +1,6 @@
 Process
 How We Organized Our Team
-We decided to split up the work based on what each of us is good at. Our team is just three people, so we had to be smart about who does what:
+We decided to split up the work based on what each of us is good at. Our team is just three people, so we had to be smart about who does what: 
 •	Emmanuel is handling the setup stuff, designing how the app will look, and writing technical docs
 •	Rebecca took on the summary, looking at competitors, and figuring out who would use our app
 •	I (Amir) am in charge of the product backlog and keeping track of all our tasks
