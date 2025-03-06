@@ -54,4 +54,3 @@ For Sprint 1, we want to improve by:
 •	Starting to set up tests early so we don't have to scramble later
 •	Getting better at estimating how long tasks will take (we were way off on some of our Sprint 0 estimates!)
 
-![image](https://github.com/user-attachments/assets/93b43d9d-b838-4fa5-bd06-4502f75b402b)
