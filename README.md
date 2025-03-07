@@ -1,6 +1,6 @@
 # MeetMerge
 
-MeetMerge is a web application that helps coordinate meetings by merging multiple Calendly or Google Calendar share links to determine overlapping availability. It can generate a new Calendly event or even autofill a LettuceMeet event based on the merged schedule.
+As our lives get busier, many of us need schedules to make sure we complete our work and complete our goals on time. However, even those schedules can quickly become disorganized! MeetMerge is a web application that helps coordinate meetings by merging multiple Calendly or Google Calendar share links to determine overlapping availability. It can generate a new Calendly event or even autofill a LettuceMeet event based on the merged schedule.
 
 ## Features
 
