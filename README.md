@@ -112,5 +112,33 @@ http://localhost:8080/api/meetings/test
 ```
 returns the expected response.
 
+### Contributing:
+Contributions are welcome! If you see an issue that you can solve, first fork this repository on Github.
+Then clone this repository:
+```bash
+git clone https://github.com/hvpham-yorku/project-meetmerge/ 
+```
+Next, create a new branch:
+```bash
+git checkout -b solutionbranch
+```
+Prepare the changes:
+```bash
+git add .
+```
+Make your changes and commit with a clear message:
+```bash
+git commit - m "Fixed problem E"
+```
+Push to the branch you previously created:
+```bash
+git push origin solutionbranch
+```
+Create a pull request so we can review.
+
+### Team:
+Rebecca John
+Emmanuel Ideho
+Amir Dmore
 
 
