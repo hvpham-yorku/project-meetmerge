@@ -1,10 +1,10 @@
-# Calendly Combiner
+# MeetMerge
 
 ## Project Summary
 
 ### Part 1: The Project Objective
 
-The **Calendly Combiner** is a simple application that allows users to paste multiple **Calendly** or **Google Calendar** share links and automatically finds the overlapping available times across all provided schedules. The application then generates a new **Calendly** event with only those overlapping time slots or autofills a **LettuceMeet** schedule to streamline the meeting coordination process. This tool eliminates the hassle of manually checking multiple schedules to find a common time, making group scheduling effortless.
+The **MeetMerge** is a simple application that allows users to paste multiple **Calendly** or **Google Calendar** share links and automatically finds the overlapping available times across all provided schedules. The application then generates a new **Calendly** event with only those overlapping time slots or autofills a **LettuceMeet** schedule to streamline the meeting coordination process. This tool eliminates the hassle of manually checking multiple schedules to find a common time, making group scheduling effortless.
 
 ---
 
@@ -13,7 +13,7 @@ The **Calendly Combiner** is a simple application that allows users to paste mul
 #### **Persona 1: Peter – The Project Manager**
 - Peter frequently coordinates meetings with team members and external partners.
 - With multiple stakeholders using different scheduling tools, Peter struggles to find mutually available time slots efficiently.
-- The **Calendly Combiner** will save Peter valuable time by automating this process.
+- The **MeetMerge** will save Peter valuable time by automating this process.
 
 #### **Persona 2: Steve – The University Professor**
 - Steve regularly schedules office hours, research meetings, and committee sessions with students and faculty.
@@ -22,7 +22,7 @@ The **Calendly Combiner** is a simple application that allows users to paste mul
 #### **Persona 3: Wanda – The University Student**
 - Wanda juggles multiple commitments, including classes, group projects, and extracurricular activities.
 - She often struggles to find time with classmates and professors for study sessions or project meetings.
-- The **Calendly Combiner** helps Emily quickly align her availability with others, eliminating back-and-forth scheduling discussions.
+- The **MeetMerge** helps Emily quickly align her availability with others, eliminating back-and-forth scheduling discussions.
 
 ---
 
@@ -31,16 +31,16 @@ The **Calendly Combiner** is a simple application that allows users to paste mul
 #### **Scenario 1: Coordinating a Team Meeting Across Different Calendars**
 - Peter must schedule strategy meetings with the external teams, designers, and engineers.
 - Everyone shares their **Calendly** and **Google Calendar** links.
-- The **Calendly Combiner** extracts the available time slots from all the links, identifies the overlapping slots, and creates a new **Calendly** event with only the common available times for the team.
+- The **MeetMerge** extracts the available time slots from all the links, identifies the overlapping slots, and creates a new **Calendly** event with only the common available times for the team.
 
 #### **Scenario 2: Setting Up Research Meetings**
 - Steve wants to coordinate a research discussion with faculty members from multiple universities, all using different calendar systems.
-- Steve pastes their shared calendar links into the **Calendly Combiner**.
+- Steve pastes their shared calendar links into the **MeetMerge**.
 - The tool finds and suggests the best available meeting time and autofills it into **LettuceMeet** for easy confirmation.
 
 #### **Scenario 3: Scheduling a Group Project Meeting**
 - Wanda is working on a group project with four classmates, each with different class schedules and commitments.
-- Instead of manually comparing schedules, Wanda collects everyone’s shared calendar links and pastes them into the **Calendly Combiner**.
+- Instead of manually comparing schedules, Wanda collects everyone’s shared calendar links and pastes them into the **MeetMerge**.
 - The tool identifies the best available times and allows Wanda to create a meeting event with minimal effort.
 
 ---
