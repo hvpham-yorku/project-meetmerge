@@ -18,7 +18,7 @@ As our lives get busier, many of us need schedules to make sure we complete our 
 
 ## Prerequisites
 
-- **Java:** JDK 17 or later
+- **Java:** JDK 23 or later
 - **Maven:** Either installed globally or use the Maven Wrapper provided
 - **Node.js & npm/Yarn:** For managing the frontend dependencies
 
