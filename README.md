@@ -137,8 +137,8 @@ git push origin solutionbranch
 Create a pull request so we can review.
 
 ### Team:
-Rebecca John
-Emmanuel Ideho
-Amir Dmore
+-Rebecca John
+-Emmanuel Ideho
+-Amir Dmore
 
 
