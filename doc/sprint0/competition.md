@@ -16,7 +16,7 @@ This document goes over existing products that solve a problem similar to the **
 ### **2. LettuceMeet** ([https://lettucemeet.com](https://lettucemeet.com))
 - **Strengths**: Lightweight and simple meeting coordination tool.
 - **Limitations**: Requires manual entry of availability rather than syncing directly from shared calendar links.
-- **Key Differentiator**: The **Calendly Combiner** automatically extracts available slots from links instead of relying on manual input.
+- **Key Differentiator**: The **MeetMerge** automatically extracts available slots from links instead of relying on manual input.
 
 ### **3. Doodle** ([https://doodle.com](https://doodle.com))
 - **Strengths**: Popular for polling multiple users for availability.
