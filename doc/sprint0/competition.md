@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document goes over existing products that solve a problem similar to the **Calendly Combiner**. It highlights key competitors, how our product differentiates itself, and why our approach uniquely suits specific users and scenarios.
+This document goes over existing products that solve a problem similar to the **MeetMerge**. It highlights key competitors, how our product differentiates itself, and why our approach uniquely suits specific users and scenarios.
 
 ---
 
@@ -11,7 +11,7 @@ This document goes over existing products that solve a problem similar to the **
 ### **1. Calendly** ([https://calendly.com](https://calendly.com))
 - **Strengths**: Industry leader in scheduling, integrates with Google Calendar, Outlook, and Zoom.
 - **Limitations**: Focuses on individual availability rather than combining multiple people's schedules into one event.
-- **Key Differentiator**: The **Calendly Combiner** takes multiple **Calendly** links and finds overlapping availability, something Calendly itself does not automatically support.
+- **Key Differentiator**: The **MeetMerge** takes multiple **Calendly** links and finds overlapping availability, something Calendly itself does not automatically support.
 
 ### **2. LettuceMeet** ([https://lettucemeet.com](https://lettucemeet.com))
 - **Strengths**: Lightweight and simple meeting coordination tool.
@@ -21,13 +21,13 @@ This document goes over existing products that solve a problem similar to the **
 ### **3. Doodle** ([https://doodle.com](https://doodle.com))
 - **Strengths**: Popular for polling multiple users for availability.
 - **Limitations**: Users must manually select available times, which can be time-consuming.
-- **Key Differentiator**: The **Calendly Combiner** eliminates the need for polling by automatically detecting common available slots from linked calendars.
+- **Key Differentiator**: The **MeetMerge** eliminates the need for polling by automatically detecting common available slots from linked calendars.
 
 ---
 
 ## Unique Value Proposition
 
-Unlike competitors that rely on manual scheduling or polling, the **Calendly Combiner**:
+Unlike competitors that rely on manual scheduling or polling, the **MeetMerge**:
 - **Automatically extracts available time slots** from multiple shared calendar links.
 - **Finds overlapping availability** across multiple users.
 - **Creates a new Calendly event or autofills a LettuceMeet schedule** without requiring manual data entry.
