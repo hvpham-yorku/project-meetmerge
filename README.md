@@ -32,4 +32,7 @@ MeetMerge is a web application that helps coordinate meetings by merging multipl
    cd MeetMerge/backend
 
 2.**Run the Spring Boot Application:**
--Using the Maven Wrapper:
+--**Using the Maven Wrapper:**
+```bash
+  ./mvnw spring-boot:run
+
