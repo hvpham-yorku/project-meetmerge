@@ -112,19 +112,5 @@ http://localhost:8080/api/meetings/test
 ```
 returns the expected response.
 
-## Contributing
 
-Contributions are welcome! Feel free to open issues or submit pull requests with improvements, bug fixes, or new features.
-
-## License
-
-This project is licensed under the MIT License.
-
-## Contact
-
-For questions or support, please contact [your-email@example.com] or [your GitHub username].
-
----
-
-This README file provides an overview of MeetMerge, explains the project structure, details setup instructions for both the backend and frontend, and includes troubleshooting, contribution, and licensing information. Adjust the repository URL, contact details, and any other sections as needed for your project.
 
