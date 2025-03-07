@@ -51,5 +51,5 @@ Unlike competitors that rely on manual scheduling or polling, the **MeetMerge**:
 
 ## Conclusion
 
-The **Calendly Combiner** fills a critical gap in the scheduling space by automating multi-calendar availability detection. While competitors offer partial solutions, we aim to provide an automated approach geared toward **teams, academics, and event organizers** who frequently need to schedule multi-user meetings.
+The **MeetMerge** fills a critical gap in the scheduling space by automating multi-calendar availability detection. While competitors offer partial solutions, we aim to provide an automated approach geared toward **teams, academics, and event organizers** who frequently need to schedule multi-user meetings.
 
