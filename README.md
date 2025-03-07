@@ -15,3 +15,21 @@ MeetMerge is a web application that helps coordinate meetings by merging multipl
 - **Frontend:** React with Vite
 - **Backend:** Java Spring Boot
 - **Build Tools:** Maven (with Maven Wrapper) for backend and Node.js/npm (or Yarn) for frontend
+
+## Prerequisites
+
+- **Java:** JDK 17 or later
+- **Maven:** Either installed globally or use the Maven Wrapper provided
+- **Node.js & npm/Yarn:** For managing the frontend dependencies
+
+## Getting Started
+
+### Backend Setup (Spring Boot)
+
+1. **Clone the Repository & Navigate to the Backend:**
+   ```bash
+   git clone https://github.com/yourusername/MeetMerge.git
+   cd MeetMerge/backend
+
+2.**Run the Spring Boot Application:**
+Using the Maven Wrapper:
