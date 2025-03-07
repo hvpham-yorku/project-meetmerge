@@ -36,5 +36,3 @@
 - [ ] **LettuceMeet Autofill**: Autofill suggested time slots in **LettuceMeet**.
 
 ---
-
-This document serves as a **shared agreement** for when a feature is considered complete. 🚀
