@@ -116,7 +116,7 @@ returns the expected response.
 Contributions are welcome! If you see an issue that you can solve, first fork this repository on Github.
 Then clone this repository:
 ```bash
-git clone https://github.com/hvpham-yorku/project-meetmerge/ 
+git clone https://github.com/USER_NAME/project-meetmerge/ 
 ```
 Next, create a new branch:
 ```bash
