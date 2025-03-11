@@ -1,25 +1,18 @@
 package com.meetmerge.controller;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-
-
-
-import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/calendly")
+@RequestMapping("/api/calendly")
 public class CalendlyController {
     
-    private final Dotenv dotenv = Dotenv.load(); // Load environment variables
-    private String API_KEY = dotenv.get("CALENDLY_API_KEY"); 
+    @Value("${CALENDLY_API_KEY}")
+    private String API_KEY; 
 
     @PostMapping("/validate-links")
     public ResponseEntity<?> validateLinks(@RequestBody List<String> links) {
@@ -33,12 +26,14 @@ public class CalendlyController {
             try {
                 HttpHeaders headers = new HttpHeaders();
                 headers.set("Authorization", "Bearer " + API_KEY);
+                headers.set(HttpHeaders.ACCEPT, "application/json");
+
                 HttpEntity<String> entity = new HttpEntity<>(headers);
 
-                String apiUrl = "https://api.calendly.com/users/me/scheduled_events";
-                ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
+                // Send a HEAD request to see if the link exists
+                ResponseEntity<String> response = restTemplate.exchange(link, HttpMethod.HEAD, entity, String.class);
 
-                if (response.getStatusCode() != HttpStatus.OK) {
+                if (!response.getStatusCode().is2xxSuccessful()) {
                     return ResponseEntity.badRequest().body("Calendly link does not exist: " + link);
                 }
             } catch (Exception e) {
@@ -49,8 +44,7 @@ public class CalendlyController {
     }
 
     private boolean isValidCalendlyLink(String link) {
-        String regex = "^(https?://calendly\\\\.com/[a-zA-Z0-9_-]+(/[a-zA-Z0-9_-]+)?)$";
+        String regex = "^(https?://calendly\\.com/[a-zA-Z0-9_-]+(/[a-zA-Z0-9_-]+)?)$";
         return link.matches(regex);
     }
 }
-
