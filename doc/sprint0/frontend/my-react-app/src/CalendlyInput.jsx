@@ -22,11 +22,14 @@ const CalendlyInputForm = () => {
     e.preventDefault(); // Prevent page refresh
 
     try {
-      const response = await axios.post("http://localhost:8080/api/calendly/validate", { links }); // Send all links
+      const response = await axios.post("http://localhost:8080/api/calendly/validate-links", 
+        links,
+        { headers: { "Content-Type": "application/json" } }
+      ); // Send all links
       setResponseMessage(response.data);
       setErrors([]); // Clear errors on successful submission
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", error.response ? error.response.data : error.message);
       setResponseMessage("Invalid Calendly link or server error.");
     }
   };

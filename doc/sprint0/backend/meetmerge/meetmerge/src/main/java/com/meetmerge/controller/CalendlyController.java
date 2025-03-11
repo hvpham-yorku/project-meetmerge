@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/calendly")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CalendlyController {
     
     @Value("${CALENDLY_API_KEY}")
@@ -17,6 +18,10 @@ public class CalendlyController {
     @PostMapping("/validate-links")
     public ResponseEntity<?> validateLinks(@RequestBody List<String> links) {
         RestTemplate restTemplate = new RestTemplate();
+
+        if (links == null || links.isEmpty()) {
+            return ResponseEntity.badRequest().body("No links provided!");
+        }
 
         for (String link : links) {
             if (!isValidCalendlyLink(link)) {
@@ -30,7 +35,7 @@ public class CalendlyController {
 
                 HttpEntity<String> entity = new HttpEntity<>(headers);
 
-                // Send a HEAD request to see if the link exists
+                // Send a GET request to see if the link exists
                 ResponseEntity<String> response = restTemplate.exchange(link, HttpMethod.HEAD, entity, String.class);
 
                 if (!response.getStatusCode().is2xxSuccessful()) {
