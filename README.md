@@ -139,6 +139,6 @@ Create a pull request so we can review.
 ### Team:
 - **[Rebecca John]**
 - **[Emmanuel Ideho]**
-- **[Amir Dmore]**
+- **[Amir Abdollahzadeh]**
 
 
