@@ -7,7 +7,7 @@ const CalendlyAuth = () => {
   const [error, setError] = useState("");
   const [clientId, setClientId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [busyTimes, setBusyTimes] = useState([]);
+  const [availableTimes, setAvailableTimes] = useState([]);
 
   const REDIRECT_URI = "http://localhost:5173/"; 
 
@@ -73,7 +73,7 @@ const CalendlyAuth = () => {
         localStorage.setItem("calendly_access_token", response.data.access_token);
         setIsAuthenticated(true);
         fetchUserInfo(response.data.access_token);
-        fetchBusyTimesList(response.data.access_token); 
+        fetchAvailabilitySchedule(response.data.access_token); 
       }
     } catch (error) {
       console.error("Token exchange error:", error);
@@ -103,19 +103,20 @@ const CalendlyAuth = () => {
     setUserInfo(null);
   };
 
-  const fetchBusyTimesList = async (token) => {
+  const fetchAvailabilitySchedule = async (token) => {
     try {
-      const response = await axios.get("http://localhost:8080/api/calendly/busy-times", {
+      const response = await axios.get("http://localhost:8080/api/calendly/availability-schedule", {
         headers: { Authorization: `Bearer ${token}` },
         params: { user: clientId },
       });
       
       if (response.data) {
-        setBusyTimes(response.data);  
+        console.log("Availability Schedule:", response.data);
+        setAvailableTimes(response.data);  
       }
 
     } catch(error){
-      console.error("Error fetching busy times:", error);
+      console.error("Error fetching availability schedule:", error);
     }
   };
 
@@ -150,17 +151,19 @@ const CalendlyAuth = () => {
             {userInfo && (
               <>
                 <p className="font-medium">Logged in as: {userInfo.name}</p>
-                <p className="text-sm text-gray-600">{userInfo.email}</p>
                 <p className="text-sm text-gray-600">{userInfo.scheduling_url}</p>
-                <ul>
-                  {Array.isArray(busyTimes) && busyTimes.length > 0 ? (
-                    busyTimes.map((time, index) => (
+                <ul className="space-y-2">
+                  {Array.isArray(availableTimes) && availableTimes.length > 0 ? (
+                    availableTimes.map((time, index) => (
                       <li key={index}>
-                        {new Date(time.start_time).toLocaleString()} - {new Date(time.end_time).toLocaleString()}
+                         <p className="font-medium">{time.wday.toUpperCase()} {time.date !== "N/A" ? `(${time.date})` : ""}</p>
+                          <p className="text-sm text-gray-600">
+                            {time.from} - {time.to}
+                          </p>
                       </li>
                     ))
                   ) : (
-                    <li>No busy times available</li>
+                    <li>No available schedule found.</li>
                   )}
                 </ul>
               </>

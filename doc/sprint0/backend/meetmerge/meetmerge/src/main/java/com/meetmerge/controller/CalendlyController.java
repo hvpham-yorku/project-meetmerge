@@ -9,6 +9,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/calendly")
@@ -109,8 +110,8 @@ public class CalendlyController {
         }
     }
 
-    @GetMapping("/busy-times")
-    public ResponseEntity<?> getBusyTimes(@RequestHeader("Authorization") String authHeader) {
+    @GetMapping("/availability-schedule")
+    public ResponseEntity<?> getUserAvailabilitySchedule(@RequestHeader("Authorization") String authHeader) {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", authHeader);
@@ -118,33 +119,64 @@ public class CalendlyController {
 
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
-            // Fetch scheduled events
-            ResponseEntity<Map> response = restTemplate.exchange(
-                    "https://api.calendly.com/scheduled_events",
-                    HttpMethod.GET,
-                    entity,
-                    Map.class
+            //Need current user info to get the user Uri
+            ResponseEntity<Map> userResponse = restTemplate.exchange(
+                "https://api.calendly.com/users/me",
+                HttpMethod.GET,
+                entity,
+                Map.class
             );
 
+            if (userResponse.getStatusCode() != HttpStatus.OK) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to fetch user information.");
+            }
+
+            Map<String, Object> userBody = userResponse.getBody();
+            if (userBody == null || !userBody.containsKey("resource")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid user information.");
+            }
+
+            Map<String, Object> userResource = (Map<String, Object>) userBody.get("resource");
+            String userUri = (String) userResource.get("uri");  // Get user URI
+
+             // Fetch the user's availability schedule
+             String availabilityUrl = "https://api.calendly.com/user_availability_schedules?user=" + userUri;
+             ResponseEntity<Map> response = restTemplate.exchange(
+                availabilityUrl,
+                HttpMethod.GET,
+                entity,
+                Map.class
+                );
+            
             if (response.getStatusCode() != HttpStatus.OK || response.getBody() == null) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to fetch events.");
+                }       
+
+            Map<String, Object> responseBody = response.getBody();
+            if (responseBody == null || !responseBody.containsKey("collection")) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("No availability schedule found.");
             }
+    
+            List<Map<String, Object>> schedules = (List<Map<String, Object>>) responseBody.get("collection");
+    
 
-            // Extract busy times from response
-            List<Map<String, Object>> events = (List<Map<String, Object>>) response.getBody().get("collection");
-            List<Map<String, String>> busyTimes = new ArrayList<>();
+             //Use Streams to flatten the rules and intervals into a single list
+            List<Map<String, String>> availabilityList = schedules.stream()
+                .flatMap(schedule -> ((List<Map<String, Object>>) schedule.get("rules")).stream())
+                .flatMap(rule -> ((List<Map<String, Object>>) rule.get("intervals")).stream()
+                        .map(interval -> Map.of(
+                                "wday", (String) rule.get("wday"),
+                                "date", rule.getOrDefault("date", "N/A").toString(),
+                                "from", (String) interval.get("from"),
+                                "to", (String) interval.get("to")
+                        ))
+                )
+                .collect(Collectors.toList());
 
-            for (Map<String, Object> event : events) {
-                Map<String, String> busySlot = new HashMap<>();
-                busySlot.put("start_time", (String) event.get("start_time"));
-                busySlot.put("end_time", (String) event.get("end_time"));
-                busyTimes.add(busySlot);
-            }
+            return ResponseEntity.ok(availabilityList);
 
-            return ResponseEntity.ok(busyTimes);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error fetching busy times: " + e.getMessage());
-        }
+    } catch(Exception e){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error fetching availability: " + e.getMessage());
     }
+}
 }
