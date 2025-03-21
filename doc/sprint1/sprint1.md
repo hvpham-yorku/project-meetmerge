@@ -1,4 +1,4 @@
-# 🚀 Sprint 1 Planning Meeting — MeetMerge  
+# Sprint 1 Planning Meeting — MeetMerge  
 
 **File**: `sprint1.md`  
 **Dates**: 2025-03-9, 2025-03-16, 2025-03-18, 2025-03-20  
@@ -8,19 +8,19 @@ Deliver core functionality for **MeetMerge**, focusing on Google Calendar, Outlo
 
 ---
 
-## 👥 Participants  
+## Participants  
 - **Rebecca** (Google Calendar integration, RPM.md, documentation, sprint1.md)  
 - **Emmanuel** (Calendly integration, Trello tracking, README, setup)  
 - **Amir** (Outlook support, system design)  
 
 ---
 
-## 🎯 Sprint Goal  
+## Sprint Goal  
 The objective of this sprint is to implement Google Calendar and Calendly integration, allowing users to input their scheduling links and retrieve availability for finding common free times. This will serve as the foundation for the meeting coordination functionality.  
 
 ---
 
-## 📌 Stories Selected for Sprint 1  
+## Stories Selected for Sprint 1  
 
 | # | User Story | Description | Assignee | Status |
 |---|-----------|-------------|----------|--------|
@@ -35,7 +35,7 @@ The objective of this sprint is to implement Google Calendar and Calendly integr
 
 ---
 
-## 🛠️ Task Breakdown  
+##  Task Breakdown  
 
 ### **Google Calendar Integration (Rebecca)**  
 - ✅ Set up OAuth authentication flow  
@@ -67,7 +67,7 @@ The objective of this sprint is to implement Google Calendar and Calendly integr
 
 ---
 
-## 📊 Team Capacity  
+## Team Capacity  
 
 | Team Member | Available Hours (Sprint) | Primary Focus |
 |-------------|-------------------------|---------------|
@@ -77,7 +77,7 @@ The objective of this sprint is to implement Google Calendar and Calendly integr
 
 ---
 
-## 📝 Decisions Taken  
+## Decisions Taken  
 - **Prioritize Google Calendar and Calendly first**, as they are the most commonly used scheduling platforms.  
 - **Outlook will be researched** but not implemented in this sprint.  
 - **UI will remain minimal**, focusing on backend functionality first.  
@@ -85,7 +85,7 @@ The objective of this sprint is to implement Google Calendar and Calendly integr
 
 ---
 
-## ⏭️ Next Steps  
+##  Next Steps  
 - Finalize OAuth authentication for Google, Outlook and Calendy Calendar  
 - Retrieve availability from both Google, Outlook and Calendly APIs  
 - Ensure backend endpoints return consistent formatted data  
