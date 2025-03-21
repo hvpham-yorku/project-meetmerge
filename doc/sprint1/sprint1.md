@@ -93,7 +93,7 @@ The objective of this sprint is to implement Google Calendar and Calendly integr
 
 ---
 
-## 📌 Notes  
+## Notes  
 - Backend server issues were resolved by fixing endpoints.  
 - OAuth callback correctly redirects users now.  
 - library version conflicts resolved.  
