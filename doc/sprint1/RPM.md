@@ -1,7 +1,7 @@
 # Release Planning Meeting — MeetMerge
 
 **File**: `RPM.md`  
-**Date**: 2025-03-20  
+**Date**: 2025-03-9 
 **Release Version**: v0.1  
 
 ## Participants  
