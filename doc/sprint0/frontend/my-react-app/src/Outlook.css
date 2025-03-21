@@ -1,0 +1,267 @@
+/* Outlook.css */
+
+.outlook-connector {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.connector-header h2 {
+  color: #0078d4;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.error-message {
+  background-color: #fdeded;
+  border-left: 4px solid #d83b01;
+  color: #d83b01;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.dismiss-button {
+  background: none;
+  border: none;
+  color: #0078d4;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 120, 212, 0.2);
+  border-top-color: #0078d4;
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.connection-status {
+  margin: 20px 0;
+}
+
+.connected-status {
+  display: flex;
+  align-items: center;
+  background-color: #f0f9ff;
+  padding: 12px 15px;
+  border-radius: 4px;
+  border: 1px solid #cce5ff;
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.status-indicator.connected {
+  background-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+.connect-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.connect-button {
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.connect-button:hover {
+  background-color: #106ebe;
+}
+
+.connect-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.outlook-icon {
+  margin-right: 10px;
+  fill: white;
+}
+
+.disconnect-button {
+  margin-left: auto;
+  background-color: transparent;
+  border: 1px solid #d83b01;
+  color: #d83b01;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.disconnect-button:hover {
+  background-color: #d83b01;
+  color: white;
+}
+
+.privacy-note {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.available-times-section {
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.date-range-selector h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.date-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-input-group label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.date-input-group input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.update-button {
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.update-button:hover {
+  background-color: #106ebe;
+}
+
+.times-container {
+  margin-top: 20px;
+}
+
+.times-container h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.available-times-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.time-slot {
+  background-color: white;
+  border: 1px solid #eee;
+  border-left: 4px solid #0078d4;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.time-range {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date-display {
+  font-weight: 500;
+  color: #333;
+}
+
+.duration-display {
+  background-color: #e6f3ff;
+  color: #0078d4;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.no-times-message {
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .time-range {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .duration-display {
+    margin-top: 8px;
+  }
+  
+  .date-inputs {
+    flex-direction: column;
+  }
+  
+  .date-input-group {
+    width: 100%;
+  }
+}
