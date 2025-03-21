@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from "axios";
 import './App.css'
 
-import CalendlyInputForm from './CalendlyInput';
+import CalendlyAuth from './CalendlyAuth';
 
 function App() {
   const API_URL = "http://localhost:8080/api/meetings";
@@ -26,7 +26,7 @@ const testBackend = async() => {
         <div>
           {responseData}
         </div>
-        <CalendlyInputForm />
+        <CalendlyAuth />
       </div>
     </>
   )

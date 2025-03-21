@@ -12,6 +12,16 @@ const CalendlyAuth = () => {
   const REDIRECT_URI = "http://localhost:5173/"; 
 
   useEffect(() => {
+    const token = localStorage.getItem("calendly_access_token");
+  
+    if (token) {
+      setIsAuthenticated(true);
+      fetchUserInfo(token);
+      fetchAvailabilitySchedule(token);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchOAuthConfig = async () => {
       try {
         const response = await axios.get("http://localhost:8080/api/calendly/oauth-config");
@@ -41,10 +51,12 @@ const CalendlyAuth = () => {
     if (code) {
       // Exchange the code for an access token
       exchangeCodeForToken(code);
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
     }
     
   }, [isLoading]);
+
 
   const handleLogin = () => {
     if(!clientId){
