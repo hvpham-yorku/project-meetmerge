@@ -138,4 +138,3 @@ Ensure frontend can reach backend (if on different ports):
 
 ```
 
-Let me know if you want a `.md` file exported or if you'd like this integrated with the existing doc from earlier!
