@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Outlook.css'; // Updated CSS import to match the new filename
+import './OutlookConnector.css'; // You'll need to create this CSS file
 
-const Outlook = () => {
+const OutlookConnector = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [availableTimes, setAvailableTimes] = useState([]);
@@ -246,4 +246,4 @@ const Outlook = () => {
   );
 };
 
-export default Outlook;
+export default OutlookConnector;
