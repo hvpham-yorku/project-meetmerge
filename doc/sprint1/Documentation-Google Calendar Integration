@@ -1,98 +1,70 @@
----
-title: Integrating Google Calendar with MeetMerge  
-shortTitle: Google Calendar  
-intro: Learn how to integrate Google Calendar authentication and free slot fetching using OAuth2 in a React and Spring Boot application.  
-product: MeetMerge  
-type: tutorial  
-topics:  
-  - calendars  
-  - google-api  
-  - oauth2  
-  - react  
-  - spring-boot  
-versions:  
-  - 1.0  
----
-
 # Integrating Google Calendar with MeetMerge
 
-## Introduction
-
-This guide is for full-stack developers who want to integrate Google Calendar availability into their applications. You will learn how to:
-
-- Authenticate users using Google OAuth2
-- Retrieve and store access tokens
-- Fetch free time slots using the Google Calendar API
-- Identify overlapping availability between users
-
->  Prerequisites: Familiarity with React, Spring Boot, and HTTP requests is assumed.
+**File**: `GoogleCalendarIntegration.md`  
+**Last Updated**: 2025-03-20  
+**Version**: v1.0  
 
 ---
 
-##  Project Structure: Java + React Workflow
+## Overview
 
-We use a **Spring Boot backend** for OAuth2 and Google API handling, and a **React frontend** to initiate login and display results.
+Learn how to integrate **Google Calendar authentication and availability fetching** using OAuth2 in a full-stack application built with **React** and **Spring Boot**.
 
-###  Backend Responsibilities
+---
 
-Your backend should expose:
+## Prerequisites
 
-- `GET /auth` – Initiates the Google OAuth2 login flow
-- `GET /auth/callback` – Handles the redirect and exchanges the code for tokens
-- `GET /calendar/free-slots` – Fetches free time slots using Google Calendar API
+Before starting, ensure you're familiar with:
+
+- React basics (hooks, state, components)  
+- Spring Boot fundamentals  
+- Making and handling HTTP requests  
+- Google Developer Console & OAuth2 setup  
+
+---
+
+## Project Structure
+
+**Backend**: Spring Boot  
+**Frontend**: React (with Vite)  
+**OAuth Flow**: Google OAuth2  
+
+### Backend Responsibilities
+
+- `GET /auth` — Starts the Google login flow  
+- `GET /auth/callback` — Handles token exchange  
+- `GET /calendar/free-slots` — Uses access token to fetch availability  
 
 ### Frontend Flow
 
-Your frontend should:
-
-- Redirect the user to `/auth` on button click
-- Handle the redirect from Google and extract the `code`
-- Send the `code` to your backend to retrieve and store access tokens
-- Call `/calendar/free-slots` to fetch and display availability
+- Redirects user to `/auth` when they click "Connect Google"  
+- Captures `code` from redirected URL  
+- Sends `code` to backend for token exchange  
+- Requests and displays available free slots  
 
 ---
 
-##  Cross-Platform Compatibility
+## Cross-Platform Compatibility
 
-MeetMerge is a full-stack application and can be run on any OS supporting Java and Node.js:
+This project runs on all major platforms:
 
-- macOS
-- Windows
-- Linux (any distro)
+- **macOS**  
+- **Windows**  
+- **Linux**  
 
-> Recommended:
-> - Java Development Kit (JDK) 17+
-> - Node.js 18+
+**Recommended Versions**:  
+- JDK 17 or newer  
+- Node.js v18 or newer  
 
 ---
 
 ## Environment Setup
 
-### Java (Backend)
+### Backend (Java)
 
-- Install **JDK 17+**
-- Use **Maven** or **Gradle** for dependency management
-
-### Node.js (Frontend)
-
-- Install **Node.js v18+**
-- Use **Vite** for running the dev server:
+- Install **JDK 17+**  
+- Use **Maven** or **Gradle**  
+- Start the server:
 
 ```bash
-npm run dev
-
-## Caching Dependencies
-
-### Java
-Maven caches libraries in the local `.m2` directory.
-
-Packaging Workflow Data (Optional)
-This integration doesn't produce traditional build artifacts, but during development you might:
-
-Log refresh tokens and access tokens (never do this in production)
-Store temporary data for debugging
-📖 Persisting Workflow Data using Artifacts
-### Node.js
-Use GitHub Actions to cache `node_modules` in CI/CD pipelines.  
-[Caching Dependencies in GitHub Actions](https://docs.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows)
-
+./mvnw spring-boot:run
