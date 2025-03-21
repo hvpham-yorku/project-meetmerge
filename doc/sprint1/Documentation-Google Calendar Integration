@@ -1,0 +1,82 @@
+---
+title: Integrating Google Calendar with MeetMerge  
+shortTitle: Google Calendar  
+intro: Learn how to integrate Google Calendar authentication and free slot fetching using OAuth2 in a React and Spring Boot application.  
+product: MeetMerge  
+type: tutorial  
+topics:  
+  - calendars  
+  - google-api  
+  - oauth2  
+  - react  
+  - spring-boot  
+versions:  
+  - 1.0  
+---
+
+# Integrating Google Calendar with MeetMerge
+
+## Introduction
+
+This guide is for full-stack developers who want to integrate Google Calendar availability into their applications. You will learn how to:
+
+- Authenticate users using Google OAuth2
+- Retrieve and store access tokens
+- Fetch free time slots using the Google Calendar API
+- Identify overlapping availability between users
+
+>  Prerequisites: Familiarity with React, Spring Boot, and HTTP requests is assumed.
+
+---
+
+##  Project Structure: Java + React Workflow
+
+We use a **Spring Boot backend** for OAuth2 and Google API handling, and a **React frontend** to initiate login and display results.
+
+###  Backend Responsibilities
+
+Your backend should expose:
+
+- `GET /auth` – Initiates the Google OAuth2 login flow
+- `GET /auth/callback` – Handles the redirect and exchanges the code for tokens
+- `GET /calendar/free-slots` – Fetches free time slots using Google Calendar API
+
+### Frontend Flow
+
+Your frontend should:
+
+- Redirect the user to `/auth` on button click
+- Handle the redirect from Google and extract the `code`
+- Send the `code` to your backend to retrieve and store access tokens
+- Call `/calendar/free-slots` to fetch and display availability
+
+---
+
+##  Cross-Platform Compatibility
+
+MeetMerge is a full-stack application and can be run on any OS supporting Java and Node.js:
+
+- macOS
+- Windows
+- Linux (any distro)
+
+> Recommended:
+> - Java Development Kit (JDK) 17+
+> - Node.js 18+
+
+---
+
+## Environment Setup
+
+### Java (Backend)
+
+- Install **JDK 17+**
+- Use **Maven** or **Gradle** for dependency management
+
+### Node.js (Frontend)
+
+- Install **Node.js v18+**
+- Use **Vite** for running the dev server:
+
+```bash
+npm run dev
