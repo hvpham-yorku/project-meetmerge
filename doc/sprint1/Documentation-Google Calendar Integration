@@ -80,3 +80,13 @@ MeetMerge is a full-stack application and can be run on any OS supporting Java a
 
 ```bash
 npm run dev
+
+## Caching Dependencies
+
+### Java
+Maven caches libraries in the local `.m2` directory.
+
+### Node.js
+Use GitHub Actions to cache `node_modules` in CI/CD pipelines.  
+[Caching Dependencies in GitHub Actions](https://docs.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows)
+
