@@ -10,7 +10,7 @@ Deliver core functionality for **MeetMerge**, focusing on Google Calendar, Outlo
 
 ## Participants  
 - **Rebecca** (Google Calendar integration, RPM.md, documentation, sprint1.md)  
-- **Emmanuel** (Calendly integration, Trello tracking, README, setup)  
+- **Emmanuel** (Calendly integration, Trello tracking, README, setup, Standup doc)  
 - **Amir** (Outlook support, system design)  
 
 ---
@@ -78,7 +78,7 @@ The objective of this sprint is to implement Google Calendar and Calendly integr
 ---
 
 ## Decisions Taken  
-- **Prioritize Google Calendar and Calendly first**, as they are the most commonly used scheduling platforms.  
+- **Prioritize Google Calendar, Outlook, Calendly first**, as they are the most commonly used scheduling platforms.  
 - **Outlook will be researched** but not implemented in this sprint.  
 - **UI will remain minimal**, focusing on backend functionality first.  
 - **Trello will be used for tracking** progress on tasks.  
