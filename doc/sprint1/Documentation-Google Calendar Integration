@@ -86,6 +86,12 @@ npm run dev
 ### Java
 Maven caches libraries in the local `.m2` directory.
 
+Packaging Workflow Data (Optional)
+This integration doesn't produce traditional build artifacts, but during development you might:
+
+Log refresh tokens and access tokens (never do this in production)
+Store temporary data for debugging
+📖 Persisting Workflow Data using Artifacts
 ### Node.js
 Use GitHub Actions to cache `node_modules` in CI/CD pipelines.  
 [Caching Dependencies in GitHub Actions](https://docs.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows)
