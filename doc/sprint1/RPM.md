@@ -13,7 +13,7 @@
 ---
 
 ## Release Goal  
-Deliver a working MVP of **MeetMerge**, an app that aggregates availability from Calendly and Google Calendar links, finds overlapping time slots, and allows users to generate a new scheduling link or Lettucemeet poll based on those overlaps.
+Deliver a working MVP of **MeetMerge**, an app that aggregates availability from Calendly, Outlink, and Google Calendar links, finds overlapping time slots, and allows users to generate a new scheduling link or Lettucemeet poll based on those overlaps.
 
 ---
 
@@ -25,7 +25,7 @@ Deliver a working MVP of **MeetMerge**, an app that aggregates availability from
 - Fetch & normalize availability across time zones
 - Identify overlapping time slots
 - Display mutual availability in a clean UI
-- Generate new Calendly event or Lettucemeet poll with selected times
+- Generate a new Calendly event or Lettucemeet poll with selected times
 
 ---
 
@@ -34,7 +34,7 @@ Deliver a working MVP of **MeetMerge**, an app that aggregates availability from
 | # | Title | Description | Status |
 |---|-------|-------------|--------|
 | 1 | **Link Input** | Allow users to input multiple Calendly and Google links | ✅ In Progress |
-| 2 | **Google Calendar Support** | Fetch availability via shared Google Calendar links | ✅ In Progress |
+| 2 | **Google, Canlendy and Outlook Calendar Support** | Fetch availability via shared Calendar links | ✅ In Progress |
 | 3 | **Find Overlapping Times** | Show mutual availability across calendars | 🔜 Planned |
 | 4 | **Display Results Clearly** | Local timezone-based results view | 🔜 Planned |
 | 5 | **Create New Calendly Link** | Generate link based on overlap | ⏳ Backlog |
@@ -47,7 +47,7 @@ Deliver a working MVP of **MeetMerge**, an app that aggregates availability from
 
 ## Technical Priorities
 
-- ✅ Finalize Google OAuth + token handling  
+- ✅ Finalize Google, Calendy and Outlook OAuth + token handling  
 - ✅ Secure frontend-backend callback flow (`/auth/callback`)  
 - ✅ Implement `/frontslots` endpoint for fetching calendar data  
 - 🔄 Implement overlap comparison logic (time-normalized)  
@@ -60,8 +60,8 @@ Deliver a working MVP of **MeetMerge**, an app that aggregates availability from
 
 | Week | Tasks |
 |------|-------|
-| Week 1 | Google OAuth, Link UI & validation |
-| Week 2 | Google Calendar data fetch & backend endpoint |
+| Week 1 | Google, Outlook, Calendy OAuth, Link UI & validation |
+| Week 2 | Calendar data fetch & backend endpoint |
 | Week 3 | Overlap logic + display results |
 | Week 4 | Generate link + final testing and MVP demo |
 
