@@ -4,7 +4,7 @@
 **Dates**: 2025-03-9, 2025-03-16, 2025-03-18, 2025-03-20  
 **Sprint Duration**: 2 Weeks  
 **Sprint Goal**:  
-Deliver core functionality for **MeetMerge**, focusing on Google Calendar, Outlook, Calendly integration, ensuring users can input their scheduling links and fetch availability.  
+Deliver core functionality for **MeetMerge**, focusing on Google Calendar, Outlook, and Calendly integration, ensuring users can input their scheduling links and fetch availability.  
 
 ---
 
@@ -24,14 +24,14 @@ The objective of this sprint is to implement Google Calendar and Calendly integr
 
 | # | User Story | Description | Assignee | Status |
 |---|-----------|-------------|----------|--------|
-| 1 | **Google Calendar Integration** | Implement OAuth flow, retrieve free/busy times | Rebecca | 🔄 In Progress |
-| 2 | **Calendly Integration** | Fetch availability from Calendly API | Emmanuel | 🔄 In Progress |
-| 3 | **Outlook Calendar Support** | Research & plan Outlook API integration | Amir | ⏳ Planned |
-| 4 | **Basic UI for Input** | Users can input Calendly/Google Calendar links | Rebecca | ✅ Done |
-| 5 | **API Setup** | Backend endpoints for fetching availability | Emmanuel | 🔄 In Progress |
-| 6 | **System Design** | High-level architecture & documentation | Amir | 🔄 In Progress |
+| 1 | **Google Calendar Integration** | Implement OAuth flow, retrieve free/busy times | Rebecca | ✅ Done |
+| 2 | **Calendly Integration** | Fetch availability from Calendly API | Emmanuel | ✅ Done |
+| 3 | **Outlook Calendar Support** | Research & plan Outlook API integration | Amir | ✅ Planned |
+| 4 | **Basic UI for Input** | Users can input Calendly/Google Calendar links | Rebecca, Emmanuel | ✅ Done |
+| 5 | **API Setup** | Backend endpoints for fetching availability | Emmanuel | ✅ Done |
+| 6 | **System Design** | High-level architecture & documentation | Amir | ✅ Done |
 | 7 | **Project Setup & Tracking** | Setup Trello board & initial repo structure | Emmanuel | ✅ Done |
-| 8 | **Documentation** | RPM.md, Sprint1.md, ReadMe updates | Rebecca | 🔄 In Progress |
+| 8 | **Documentation** | RPM.md, Sprint1.md, ReadMe updates | Rebecca | ✅ Done |
 
 ---
 
