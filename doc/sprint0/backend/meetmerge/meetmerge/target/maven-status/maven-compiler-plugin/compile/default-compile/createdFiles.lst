@@ -1,2 +1,5 @@
+com\meetmerge\controller\GoogleController.class
 com\meetmerge\MeetmergeApplication.class
+com\meetmerge\service\GoogleService.class
+com\meetmerge\MeetmergeApplication$1.class
 com\meetmerge\controller\MeetingController.class
