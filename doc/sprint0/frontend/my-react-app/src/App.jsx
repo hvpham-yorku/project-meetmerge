@@ -5,6 +5,8 @@ import axios from "axios";
 const REDIRECT_URI = "http://localhost:5173/api/auth/callback"; 
 const API_BASE_URL = "http://localhost:8080"; //  FIXED Backend should be 8080
 
+import CalendlyAuth from './CalendlyAuth';
+
 function App() {
   const [accessToken, setAccessToken] = useState(localStorage.getItem("google_access_token") || "");
   const navigate = useNavigate(); //  Initialize useNavigate
@@ -71,8 +73,9 @@ function App() {
           </button>
         )}
       </div>
+         <CalendlyAuth />
     </div>
   );
-}
+
 
 export default App;
