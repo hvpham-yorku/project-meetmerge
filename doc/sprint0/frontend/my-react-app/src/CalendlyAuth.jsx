@@ -9,7 +9,8 @@ const CalendlyAuth = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [availableTimes, setAvailableTimes] = useState([]);
 
-  const REDIRECT_URI = "http://localhost:5173/"; 
+  const REDIRECT_URI = "http://localhost:5173/freeslots";
+ 
 
   useEffect(() => {
     const token = localStorage.getItem("calendly_access_token");
@@ -42,20 +43,20 @@ const CalendlyAuth = () => {
     
   }, []);
 
-  useEffect(() => {
-    if(!isLoading){
-      // Check if we're returning from Calendly auth
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
+  // useEffect(() => {
+  //   if(!isLoading){
+  //     // Check if we're returning from Calendly auth
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const code = urlParams.get("code");
     
-    if (code) {
-      // Exchange the code for an access token
-      exchangeCodeForToken(code);
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-    }
+  //   if (code) {
+  //     // Exchange the code for an access token
+  //     exchangeCodeForToken(code);
+  //     window.history.replaceState({}, document.title, window.location.pathname);
+  //   }
+  //   }
     
-  }, [isLoading]);
+  // }, [isLoading]);
 
 
   const handleLogin = () => {
@@ -65,33 +66,34 @@ const CalendlyAuth = () => {
     }
 
      // Redirect to Calendly for authorization
-     const authUrl = `https://auth.calendly.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+     //const authUrl = `https://auth.calendly.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+     const authUrl = `https://auth.calendly.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&state=calendly`;
      window.location.href = authUrl;
   };
 
 
-  const exchangeCodeForToken = async (code) => {
-    try {
-      // Clear the URL parameters to avoid issues on page refresh
-      window.history.replaceState({}, document.title, window.location.pathname);
+  // const exchangeCodeForToken = async (code) => {
+  //   try {
+  //     // Clear the URL parameters to avoid issues on page refresh
+  //     window.history.replaceState({}, document.title, window.location.pathname);
       
-      // This exchange should happen on your backend for security
-      const response = await axios.post("http://localhost:8080/api/calendly/exchange-token", {
-        code: code,
-        redirect_uri: REDIRECT_URI,
-      });
+  //     // This exchange should happen on your backend for security
+  //     const response = await axios.post("http://localhost:8080/api/calendly/exchange-token", {
+  //       code: code,
+  //       redirect_uri: REDIRECT_URI,
+  //     });
       
-      if (response.data && response.data.access_token) {
-        localStorage.setItem("calendly_access_token", response.data.access_token);
-        setIsAuthenticated(true);
-        fetchUserInfo(response.data.access_token);
-        fetchAvailabilitySchedule(response.data.access_token); 
-      }
-    } catch (error) {
-      console.error("Token exchange error:", error);
-      setError("Failed to authenticate with Calendly");
-    }
-  };
+  //     if (response.data && response.data.access_token) {
+  //       localStorage.setItem("calendly_access_token", response.data.access_token);
+  //       setIsAuthenticated(true);
+  //       fetchUserInfo(response.data.access_token);
+  //       fetchAvailabilitySchedule(response.data.access_token); 
+  //     }
+  //   } catch (error) {
+  //     console.error("Token exchange error:", error);
+  //     setError("Failed to authenticate with Calendly");
+  //   }
+  // };
 
   const fetchUserInfo = async (token) => {
     try {

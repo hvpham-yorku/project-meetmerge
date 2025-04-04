@@ -18,8 +18,9 @@ function App() {
     if (code) {
       console.log(" Processing OAuth Callback...");
       exchangeCodeForToken(code);
-      
-    } else if (accessToken) {
+
+    // ✅ Only auto-redirect if user is on `/` and didn't manually go there
+    } else if (accessToken && window.location.pathname === "/" && sessionStorage.getItem("justLoggedIn") !== "false") {
       console.log("User already authenticated, redirecting...");
       navigate("/freeslots"); // Redirect to FreeSlots if already logged in
     }
@@ -28,16 +29,19 @@ function App() {
   //  FIXED: `exchangeCodeForToken`
   const exchangeCodeForToken = async (code) => {
     try {
-      window.history.replaceState({}, document.title, "/"); 
+      // window.history.replaceState({}, document.title, "/"); 
 
       console.log(" Exchanging code for token...");
       const response = await axios.get(`http://localhost:8080/api/google/auth/callback?code=${code}`);
-
 
       console.log(" Response from backend:", response.data);
 
       if (response.data && response.data.access_token) {
         console.log(" Google Access Token Received:", response.data.access_token);
+
+        // ✅ Flag that the user just logged in — prevents home redirection loop
+        sessionStorage.setItem("justLoggedIn", "true");
+
         localStorage.setItem("google_access_token", response.data.access_token);
         setAccessToken(response.data.access_token);
         
@@ -73,9 +77,9 @@ function App() {
           </button>
         )}
       </div>
-         <CalendlyAuth />
+      <CalendlyAuth />
     </div>
   );
-
+}
 
 export default App;
