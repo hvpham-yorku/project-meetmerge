@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
 import axios from "axios";
-import "./App.css";
+import "./App.css"
 const REDIRECT_URI = "http://localhost:5173/api/auth/callback"; 
 const API_BASE_URL = "http://localhost:8080"; //  FIXED Backend should be 8080
 
