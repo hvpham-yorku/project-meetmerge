@@ -9,11 +9,11 @@ const CalendlyAuth = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [availableTimes, setAvailableTimes] = useState([]);
 
-  const REDIRECT_URI = "http://localhost:5173/"; 
+  const REDIRECT_URI = "http://localhost:5173/freeslots";
 
   useEffect(() => {
     const token = localStorage.getItem("calendly_access_token");
-  
+
     if (token) {
       setIsAuthenticated(true);
       fetchUserInfo(token);
@@ -39,80 +39,38 @@ const CalendlyAuth = () => {
     };
 
     fetchOAuthConfig();
-    
   }, []);
 
-  useEffect(() => {
-    if(!isLoading){
-      // Check if we're returning from Calendly auth
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
-    
-    if (code) {
-      // Exchange the code for an access token
-      exchangeCodeForToken(code);
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-    }
-    
-  }, [isLoading]);
-
-
   const handleLogin = () => {
-    if(!clientId){
+    if (!clientId) {
       setError("Client ID not available");
       return;
     }
 
-     // Redirect to Calendly for authorization
-     const authUrl = `https://auth.calendly.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
-     window.location.href = authUrl;
-  };
-
-
-  const exchangeCodeForToken = async (code) => {
-    try {
-      // Clear the URL parameters to avoid issues on page refresh
-      window.history.replaceState({}, document.title, window.location.pathname);
-      
-      // This exchange should happen on your backend for security
-      const response = await axios.post("http://localhost:8080/api/calendly/exchange-token", {
-        code: code,
-        redirect_uri: REDIRECT_URI,
-      });
-      
-      if (response.data && response.data.access_token) {
-        localStorage.setItem("calendly_access_token", response.data.access_token);
-        setIsAuthenticated(true);
-        fetchUserInfo(response.data.access_token);
-        fetchAvailabilitySchedule(response.data.access_token); 
-      }
-    } catch (error) {
-      console.error("Token exchange error:", error);
-      setError("Failed to authenticate with Calendly");
-    }
+    const authUrl = `https://auth.calendly.com/oauth/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&state=calendly`;
+    window.location.href = authUrl;
   };
 
   const fetchUserInfo = async (token) => {
     try {
       const response = await axios.get("http://localhost:8080/api/calendly/user-info", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
-      
+
       setUserInfo(response.data);
     } catch (error) {
       console.error("Error fetching user info:", error);
       setError("Failed to get user information");
     }
-   
   };
 
   const handleLogout = () => {
     localStorage.removeItem("calendly_access_token");
     setIsAuthenticated(false);
     setUserInfo(null);
+    setAvailableTimes([]);
   };
 
   const fetchAvailabilitySchedule = async (token) => {
@@ -121,21 +79,26 @@ const CalendlyAuth = () => {
         headers: { Authorization: `Bearer ${token}` },
         params: { user: clientId },
       });
-      
+
       if (response.data) {
         console.log("Availability Schedule:", response.data);
-        setAvailableTimes(response.data);  
+        setAvailableTimes(response.data);
       }
-
-    } catch(error){
+    } catch (error) {
       console.error("Error fetching availability schedule:", error);
     }
+  };
+
+  const fixTimeFormat = (t) => {
+    if (!t) return null;
+    return t.length === 5 ? `${t}:00` : t;
   };
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  
   return (
     <div className="p-4 max-w-md mx-auto">
       <h2 className="text-xl font-bold mb-4">Calendly Integration</h2>
@@ -165,19 +128,22 @@ const CalendlyAuth = () => {
                 <p className="font-medium">Logged in as: {userInfo.name}</p>
                 <p className="text-sm text-gray-600">{userInfo.scheduling_url}</p>
                 <ul className="space-y-2">
-                  {Array.isArray(availableTimes) && availableTimes.length > 0 ? (
-                    availableTimes.map((time, index) => (
-                      <li key={index}>
-                         <p className="font-medium">{time.wday.toUpperCase()} {time.date !== "N/A" ? `(${time.date})` : ""}</p>
-                          <p className="text-sm text-gray-600">
-                            {time.from} - {time.to}
-                          </p>
-                      </li>
-                    ))
-                  ) : (
-                    <li>No available schedule found.</li>
-                  )}
-                </ul>
+  {Array.isArray(availableTimes) && availableTimes.length > 0 ? (
+    availableTimes.map((time, index) => (
+      <li key={index}>
+        <p className="font-medium">
+          {time.wday.toUpperCase()} {time.date !== "N/A" ? `(${time.date})` : ""}
+        </p>
+        <p className="text-sm text-gray-600">
+          {time.from} - {time.to}
+        </p>
+      </li>
+    ))
+  ) : (
+    <li>No available schedule found.</li>
+  )}
+</ul>
+
               </>
             )}
           </div>
@@ -192,6 +158,6 @@ const CalendlyAuth = () => {
       )}
     </div>
   );
-};
 
-export default CalendlyAuth;
+};
+ export default CalendlyAuth;

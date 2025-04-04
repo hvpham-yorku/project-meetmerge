@@ -1,13 +1,12 @@
-package com.example.meetmerge;
+package com.meetmerge;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class MeetmergeApplicationTests {
+@SpringBootTest(classes = MeetmergeApplication.class) // Specify main class
+public class MeetmergeApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+    @Test
+    void contextLoads() {
+    }
 }
