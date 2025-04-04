@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./FreeSlots.css";
 import { useNavigate } from "react-router-dom";
 
 const API_BASE_URL = "http://localhost:8080"; //  Backend is on 8080, NOT 5173
 
 const FreeSlots = () => {
-  const [freeSlots, setFreeSlots] = useState([]); //  Initialize as an empty array
+  const [freeSlots, setFreeSlots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     // Handle Calendly OAuth redirect without touching Google logic
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
     const state = urlParams.get("state");
-  
-    // If Calendly redirected here, exchange the code for a token
+
     if (code && state === "calendly") {
       const exchangeCalendlyCode = async () => {
         try {
@@ -23,7 +24,7 @@ const FreeSlots = () => {
             code: code,
             redirect_uri: "http://localhost:5173/freeslots",
           });
-  
+
           if (response.data && response.data.access_token) {
             localStorage.setItem("calendly_access_token", response.data.access_token);
             console.log("✅ Calendly access token saved.");
@@ -34,12 +35,11 @@ const FreeSlots = () => {
           setError("Failed to authenticate with Calendly.");
         }
       };
-  
+
       exchangeCalendlyCode();
-      return; // Don't fetch anything else until redirect is cleaned up
+      return;
     }
 
-  
     const fetchFreeSlots = async () => {
       try {
         const accessToken = localStorage.getItem("google_access_token");
@@ -67,7 +67,6 @@ const FreeSlots = () => {
       } catch (err) {
         console.error("API Error:", err);
 
-        //  Handle unauthorized errors properly
         if (err.response && err.response.status === 401) {
           setError("Session expired. Redirecting to login...");
           localStorage.removeItem("google_access_token");
@@ -84,14 +83,14 @@ const FreeSlots = () => {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
       {/*  Back button */}
       <button
         onClick={() => {
           sessionStorage.setItem("justLoggedIn", "false");
           navigate("/");
         }}
-        className="self-start ml-6 mb-4 px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition"
+        className="back-button"
       >
         ← Back to Home
       </button>
@@ -105,16 +104,44 @@ const FreeSlots = () => {
       ) : freeSlots.length === 0 ? (
         <p className="text-gray-600">No free slots available this month.</p>
       ) : (
-        <ul className="bg-white p-6 rounded-lg shadow-md w-2/3 max-w-lg">
-          {freeSlots.map((slot, index) => (
-            <li key={index} className="border-b py-2">🕒 {slot}</li>
-          ))}
-        </ul>
+        <div className="slot-list">
+          {freeSlots.map((slot, index) => {
+            const [startRaw, endRaw] = slot.split(" to ");
+            const start = new Date(startRaw.split("[")[0]);
+            const end = new Date(endRaw.split("[")[0]);
+            
+
+            const dateString = start.toLocaleDateString("en-CA", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+
+            const startTime = start.toLocaleTimeString("en-CA", {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
+            const endTime = end.toLocaleTimeString("en-CA", {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
+            const timezone = startRaw.split("[")[1]?.replace("]", "") || "N/A";
+
+            return (
+              <div key={index} className="slot-card">
+                <p className="slot-date">📅 {dateString}</p>
+                <p className="slot-time">🕒 {startTime} — {endTime}</p>
+                <p className="slot-zone">🌍 {timezone}</p>
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );
 };
-
-
 
 export default FreeSlots;
