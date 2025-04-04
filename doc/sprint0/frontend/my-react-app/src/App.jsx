@@ -19,7 +19,7 @@ function App() {
       console.log(" Processing OAuth Callback...");
       exchangeCodeForToken(code);
 
-    // ✅ Only auto-redirect if user is on `/` and didn't manually go there
+    //  Only auto-redirect if user is on `/` and didn't manually go there
     } else if (accessToken && window.location.pathname === "/" && sessionStorage.getItem("justLoggedIn") !== "false") {
       console.log("User already authenticated, redirecting...");
       navigate("/freeslots"); // Redirect to FreeSlots if already logged in
@@ -39,7 +39,7 @@ function App() {
       if (response.data && response.data.access_token) {
         console.log(" Google Access Token Received:", response.data.access_token);
 
-        // ✅ Flag that the user just logged in — prevents home redirection loop
+        // Flag that the user just logged in — prevents home redirection loop
         sessionStorage.setItem("justLoggedIn", "true");
 
         localStorage.setItem("google_access_token", response.data.access_token);
@@ -67,15 +67,27 @@ function App() {
       <div className="card bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-4">Connect Google Calendar</h2>
         {accessToken ? (
-          <p className="text-green-600"> Google Connected. Redirecting...</p>
-        ) : (
-          <button
-            onClick={handleGoogleLogin}
-            className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition"
-          >
-            Connect Google
-          </button>
-        )}
+  sessionStorage.getItem("justLoggedIn") === "false" ? (
+    <button
+      onClick={() => {
+        navigate("/freeslots");
+      }}
+      className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition"
+    >
+      View My Free Slots
+    </button>
+  ) : (
+    <p className="text-green-600">✅ Google Connected. Redirecting...</p>
+  )
+) : (
+  <button
+    onClick={handleGoogleLogin}
+    className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition"
+  >
+    Connect Google
+  </button>
+)}
+
       </div>
       <CalendlyAuth />
     </div>
