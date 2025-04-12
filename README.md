@@ -136,7 +136,7 @@ git push origin solutionbranch
 ```
 Create a pull request so we can review.
 
-### Team:
+### Group 14:
 - **[Rebecca John]**
 - **[Emmanuel Ideho]**
 - **[Amir Abdollahzadeh]**
